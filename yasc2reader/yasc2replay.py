@@ -4,6 +4,7 @@ from s2protocol import protocol15405
 
 import gameevents
 import trackerevents
+from data import abilities
 
 
 def load(path):
@@ -15,6 +16,8 @@ class Replay:
         self.path = path
         self.archive = mpyq.MPQArchive(path)
         self.reader = self._get_replay_reader()
+        # GameData
+        self.game_data = None
         # Version
         self.version = None
         # str
@@ -31,7 +34,7 @@ class Replay:
     def get_game_events(self):
         contents = self.archive.read_file('replay.game.events')
         for event in self.reader.decode_replay_game_events(contents):
-            yield gameevents.create_game_event(event, self.players)
+            yield gameevents.create_game_event(event, self.players, game_data=self.game_data)
 
     def _get_replay_reader(self):
         # Read the protocol header, this can be read with any protocol
@@ -54,6 +57,8 @@ class Replay:
         for player in details['m_playerList']:
             self.players += [Player(player)]
         self.map_name = details['m_title']
+        # game data
+        self.game_data = GameData(self.version.build)
 
     def __str__(self):
         return 'Replay version {}, map: {}, players: {}'.format(
@@ -81,3 +86,8 @@ class Version:
 
     def __str__(self):
         return '{}.{}.{}.{}'.format(self.major, self.minor, self.revision, self.build)
+
+
+class GameData:
+    def __init__(self, build_version):
+        self.abilities = abilities.get_abilities(build_version)

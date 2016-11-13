@@ -32,6 +32,9 @@
     <Compile Include="yasc2reader\data\abilities.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="yasc2reader\data\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="yasc2reader\gameevents.py" />
     <Compile Include="yasc2reader\yasc2replay.py" />
     <Compile Include="yasc2reader\s2protocol\decoders.py" />

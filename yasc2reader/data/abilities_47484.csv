@@ -1,0 +1,592 @@
+-1,None,JetPack
+-1,None,Frenzied
+-1,None,RadarField
+-1,None,GravitonCatapult
+-1,None,IsTransportOverlord
+-1,None,AdeptPiercingUpgrade
+-1,None,PermanentlyCloakedStasis
+-1,None,ImprovedEnergy
+-1,None,CliffWalk
+-1,None,CombatDrugs
+-1,None,SwarmSeeds
+-1,None,WidowMineArmed
+-1,None,Disguise
+-1,None,PointDefense
+-1,None,LiberatorAGRangeUpgrade
+-1,None,ExplosiveShrapnelShells
+-1,None,CycloneLockOnDamageUpgrade
+-1,None,RapidRegeneration
+-1,None,Detector
+-1,None,PermanentlyCloaked
+-1,None,MutaliskRegeneration
+-1,None,ActivateStasisWard
+-1,None,PermanentlyCloakedObserver
+-1,None,PowerSourceFast
+-1,None,BurrowedMove
+-1,None,FlyingLocusts
+-1,None,ConcussiveGrenade
+-1,None,CloakingField
+-1,None,HighCapacityFuelTanks
+-1,None,WidowMineBioSplash
+35,None,Taunt
+36,None,stop
+38,None,move
+45,None,attack
+59,None,SprayTerran
+60,None,SprayZerg
+61,None,SprayProtoss
+62,None,SalvageShared
+64,None,GhostHoldFire
+65,None,GhostWeaponsFree
+67,None,Explode
+68,0,FleetBeacon researches CarrierLaunchSpeedUpgrade
+68,2,FleetBeacon researches PhoenixRangeUpgrade
+69,None,FungalGrowth
+70,None,GuardianShield
+71,None,MULERepair
+72,0,Zergling trains Baneling
+74,None,Feedback
+76,None,PlacePointDefenseDrone
+77,None,HallucinationArchon
+78,None,HallucinationColossus
+79,None,HallucinationHighTemplar
+80,None,HallucinationImmortal
+81,None,HallucinationPhoenix
+82,None,HallucinationProbe
+83,None,HallucinationStalker
+84,None,HallucinationVoidRay
+85,None,HallucinationWarpPrism
+86,None,HallucinationZealot
+87,None,MULEGather
+88,None,SeekerMissile
+89,None,CalldownMULE
+90,None,GravitonBeam
+94,None,SpawnChangeling
+101,None,Rally
+102,None,ProgressRally
+103,None,RallyCommand
+104,None,RallyNexus
+105,None,RallyHatchery
+106,1,RoachWarren researches GlialReconstitution
+106,2,RoachWarren researches TunnelingClaws
+108,None,InfestedTerrans
+109,None,NeuralParasite
+110,None,SpawnLarva
+111,None,StimpackMarauder
+112,None,SupplyDrop
+115,None,TimeWarp
+116,2,UltraliskCavern researches ChitinousPlating
+118,None,SCVHarvest
+119,None,ProbeHarvest
+121,None,que1
+122,None,que5
+123,None,que5CancelToSelection
+125,None,que5Addon
+126,None,BuildInProgress
+127,None,Repair
+128,0,SCV builds CommandCenter
+128,1,SCV builds SupplyDepot
+128,2,SCV builds Refinery
+128,3,SCV builds Barracks
+128,4,SCV builds EngineeringBay
+128,5,SCV builds MissileTurret
+128,6,SCV builds Bunker
+128,8,SCV builds SensorTower
+128,9,SCV builds GhostAcademy
+128,10,SCV builds Factory
+128,11,SCV builds Starport
+128,13,SCV builds Armory
+128,15,SCV builds FusionCore
+130,None,Stimpack
+131,None,GhostCloak
+133,None,MedivacHeal
+134,None,SiegeMode
+135,None,Unsiege
+136,None,BansheeCloak
+137,None,MedivacTransport
+138,None,ScannerSweep
+139,None,Yamato
+140,None,AssaultMode
+141,None,FighterMode
+142,None,BunkerTransport
+143,None,CommandCenterTransport
+144,None,CommandCenterLiftOff
+145,None,CommandCenterLand
+146,0,BarracksFlying builds BarracksTechLab
+146,0,Barracks builds BarracksTechLab
+146,1,Barracks builds BarracksReactor
+146,1,BarracksFlying builds BarracksReactor
+147,None,BarracksLiftOff
+148,0,FactoryFlying builds FactoryTechLab
+148,0,Factory builds FactoryTechLab
+148,1,Factory builds FactoryReactor
+148,1,FactoryFlying builds FactoryReactor
+149,None,FactoryLiftOff
+150,0,StarportFlying builds StarportTechLab
+150,0,Starport builds StarportTechLab
+150,1,Starport builds StarportReactor
+150,1,StarportFlying builds StarportReactor
+151,None,StarportLiftOff
+152,None,FactoryLand
+153,None,StarportLand
+154,0,PlanetaryFortress trains SCV
+154,0,OrbitalCommand trains SCV
+154,0,CommandCenter trains SCV
+155,None,BarracksLand
+156,None,SupplyDepotLower
+157,None,SupplyDepotRaise
+158,0,Barracks trains Marine
+158,1,Barracks trains Reaper
+158,2,Barracks trains Ghost
+158,3,Barracks trains Marauder
+159,1,Factory trains SiegeTank
+159,4,Factory trains Thor
+159,5,Factory trains Hellion
+159,6,Factory trains HellionTank
+159,7,Factory trains Cyclone
+159,24,Factory trains WidowMine
+160,0,Starport trains Medivac
+160,1,Starport trains Banshee
+160,2,Starport trains Raven
+160,3,Starport trains Battlecruiser
+160,4,Starport trains VikingFighter
+160,6,Starport trains Liberator
+161,0,EngineeringBay researches HiSecAutoTracking
+161,1,EngineeringBay researches TerranBuildingArmor
+161,2,EngineeringBay researches TerranInfantryWeaponsLevel1
+161,3,EngineeringBay researches TerranInfantryWeaponsLevel2
+161,4,EngineeringBay researches TerranInfantryWeaponsLevel3
+161,5,EngineeringBay researches NeosteelFrame
+161,6,EngineeringBay researches TerranInfantryArmorsLevel1
+161,7,EngineeringBay researches TerranInfantryArmorsLevel2
+161,8,EngineeringBay researches TerranInfantryArmorsLevel3
+163,0,GhostAcademy trains Nuke
+164,0,BarracksTechLab researches Stimpack
+164,1,BarracksTechLab researches ShieldWall
+164,2,BarracksTechLab researches PunisherGrenades
+165,1,FactoryTechLab researches HighCapacityBarrels
+165,4,FactoryTechLab researches DrillClaws
+165,7,FactoryTechLab researches CycloneLockOnDamageUpgrade
+166,0,StarportTechLab researches BansheeCloak
+166,3,StarportTechLab researches RavenCorvidReactor
+166,9,StarportTechLab researches BansheeSpeed
+166,13,StarportTechLab researches RavenDamageUpgrade
+166,14,StarportTechLab researches MedivacIncreaseSpeedBoost
+166,15,StarportTechLab researches LiberatorAGRangeUpgrade
+167,0,GhostAcademy researches PersonalCloaking
+168,5,Armory researches TerranVehicleWeaponsLevel1
+168,6,Armory researches TerranVehicleWeaponsLevel2
+168,7,Armory researches TerranVehicleWeaponsLevel3
+168,11,Armory researches TerranShipWeaponsLevel1
+168,12,Armory researches TerranShipWeaponsLevel2
+168,13,Armory researches TerranShipWeaponsLevel3
+168,14,Armory researches TerranVehicleAndShipArmorsLevel1
+168,15,Armory researches TerranVehicleAndShipArmorsLevel2
+168,16,Armory researches TerranVehicleAndShipArmorsLevel3
+169,0,Probe builds Nexus
+169,1,Probe builds Pylon
+169,2,Probe builds Assimilator
+169,3,Probe builds Gateway
+169,4,Probe builds Forge
+169,5,Probe builds FleetBeacon
+169,6,Probe builds TwilightCouncil
+169,7,Probe builds PhotonCannon
+169,9,Probe builds Stargate
+169,10,Probe builds TemplarArchive
+169,11,Probe builds DarkShrine
+169,12,Probe builds RoboticsBay
+169,13,Probe builds RoboticsFacility
+169,14,Probe builds CyberneticsCore
+170,None,WarpPrismTransport
+171,0,Gateway trains Zealot
+171,1,Gateway trains Stalker
+171,3,Gateway trains HighTemplar
+171,4,Gateway trains DarkTemplar
+171,5,Gateway trains Sentry
+171,6,Gateway trains Adept
+172,0,Stargate trains Phoenix
+172,2,Stargate trains Carrier
+172,4,Stargate trains VoidRay
+172,8,Stargate trains Oracle
+172,9,Stargate trains Tempest
+173,0,RoboticsFacility trains WarpPrism
+173,1,RoboticsFacility trains Observer
+173,2,RoboticsFacility trains Colossus
+173,3,RoboticsFacility trains Immortal
+173,18,RoboticsFacility trains Disruptor
+174,0,Nexus trains Probe
+175,None,PsiStorm
+176,None,HangarQueue5
+178,0,Carrier trains Interceptor
+179,0,Forge researches ProtossGroundWeaponsLevel1
+179,1,Forge researches ProtossGroundWeaponsLevel2
+179,2,Forge researches ProtossGroundWeaponsLevel3
+179,3,Forge researches ProtossGroundArmorsLevel1
+179,4,Forge researches ProtossGroundArmorsLevel2
+179,5,Forge researches ProtossGroundArmorsLevel3
+179,6,Forge researches ProtossShieldsLevel1
+179,7,Forge researches ProtossShieldsLevel2
+179,8,Forge researches ProtossShieldsLevel3
+180,1,RoboticsBay researches ObserverGraviticBooster
+180,2,RoboticsBay researches GraviticDrive
+180,5,RoboticsBay researches ExtendedThermalLance
+181,4,TemplarArchive researches PsiStormTech
+182,0,Drone builds Hatchery
+182,2,Drone builds Extractor
+182,3,Drone builds SpawningPool
+182,4,Drone builds EvolutionChamber
+182,5,Drone builds HydraliskDen
+182,6,Drone builds Spire
+182,7,Drone builds UltraliskCavern
+182,8,Drone builds InfestationPit
+182,9,Drone builds NydusNetwork
+182,10,Drone builds BanelingNest
+182,13,Drone builds RoachWarren
+182,14,Drone builds SpineCrawler
+182,15,Drone builds SporeCrawler
+183,None,DroneHarvest
+184,0,EvolutionChamber researches ZergMeleeWeaponsLevel1
+184,1,EvolutionChamber researches ZergMeleeWeaponsLevel2
+184,2,EvolutionChamber researches ZergMeleeWeaponsLevel3
+184,3,EvolutionChamber researches ZergGroundArmorsLevel1
+184,4,EvolutionChamber researches ZergGroundArmorsLevel2
+184,5,EvolutionChamber researches ZergGroundArmorsLevel3
+184,6,EvolutionChamber researches ZergMissileWeaponsLevel1
+184,7,EvolutionChamber researches ZergMissileWeaponsLevel2
+184,8,EvolutionChamber researches ZergMissileWeaponsLevel3
+185,None,UpgradeToLair
+186,None,UpgradeToHive
+187,None,UpgradeToGreaterSpire
+188,1,Hive researches overlordspeed
+188,1,Lair researches overlordspeed
+188,1,Hatchery researches overlordspeed
+188,3,Hive researches Burrow
+188,3,Lair researches Burrow
+188,3,Hatchery researches Burrow
+189,0,SpawningPool researches zerglingattackspeed
+189,1,SpawningPool researches zerglingmovementspeed
+190,2,HydraliskDen researches hydraliskspeed
+190,2,LurkerDenMP researches hydraliskspeed
+191,0,Spire researches ZergFlyerWeaponsLevel1
+191,0,GreaterSpire researches ZergFlyerWeaponsLevel1
+191,1,Spire researches ZergFlyerWeaponsLevel2
+191,1,GreaterSpire researches ZergFlyerWeaponsLevel2
+191,2,GreaterSpire researches ZergFlyerWeaponsLevel3
+191,2,Spire researches ZergFlyerWeaponsLevel3
+191,3,Spire researches ZergFlyerArmorsLevel1
+191,3,GreaterSpire researches ZergFlyerArmorsLevel1
+191,4,Spire researches ZergFlyerArmorsLevel2
+191,4,GreaterSpire researches ZergFlyerArmorsLevel2
+191,5,Spire researches ZergFlyerArmorsLevel3
+191,5,GreaterSpire researches ZergFlyerArmorsLevel3
+192,0,Larva trains Drone
+192,1,Larva trains Zergling
+192,2,Larva trains Overlord
+192,3,Larva trains Hydralisk
+192,4,Larva trains Mutalisk
+192,6,Larva trains Ultralisk
+192,9,Larva trains Roach
+192,10,Larva trains Infestor
+192,11,Larva trains Corruptor
+192,12,Larva trains Viper
+192,14,Larva trains SwarmHostMP
+193,None,MorphToBroodLord
+194,None,BurrowBanelingDown
+195,None,BurrowBanelingUp
+196,None,BurrowDroneDown
+197,None,BurrowDroneUp
+198,None,BurrowHydraliskDown
+199,None,BurrowHydraliskUp
+200,None,BurrowRoachDown
+201,None,BurrowRoachUp
+202,None,BurrowZerglingDown
+203,None,BurrowZerglingUp
+204,None,BurrowInfestorTerranDown
+205,None,BurrowInfestorTerranUp
+206,None,RedstoneLavaCritterBurrow
+207,None,RedstoneLavaCritterInjuredBurrow
+208,None,RedstoneLavaCritterUnburrow
+209,None,RedstoneLavaCritterInjuredUnburrow
+210,None,OverlordTransport
+213,0,WarpGate trains Zealot
+213,1,WarpGate trains Stalker
+213,3,WarpGate trains HighTemplar
+213,4,WarpGate trains DarkTemplar
+213,5,WarpGate trains Sentry
+213,6,WarpGate trains Adept
+214,None,BurrowQueenDown
+215,None,BurrowQueenUp
+216,None,NydusCanalTransport
+217,None,Blink
+218,None,BurrowInfestorDown
+219,None,BurrowInfestorUp
+220,None,MorphToOverseer
+221,None,UpgradeToPlanetaryFortress
+222,2,InfestationPit researches InfestorEnergyUpgrade
+222,3,InfestationPit researches NeuralParasite
+223,0,BanelingNest researches CentrificalHooks
+224,None,BurrowUltraliskDown
+225,None,BurrowUltraliskUp
+226,None,UpgradeToOrbital
+227,None,UpgradeToWarpGate
+228,None,MorphBackToGateway
+229,None,OrbitalLiftOff
+230,None,OrbitalCommandLand
+231,None,ForceField
+232,None,PhasingMode
+233,None,TransportMode
+234,0,FusionCore researches BattlecruiserEnableSpecializations
+234,1,FusionCore researches BattlecruiserBehemothReactor
+235,0,CyberneticsCore researches ProtossAirWeaponsLevel1
+235,1,CyberneticsCore researches ProtossAirWeaponsLevel2
+235,2,CyberneticsCore researches ProtossAirWeaponsLevel3
+235,3,CyberneticsCore researches ProtossAirArmorsLevel1
+235,4,CyberneticsCore researches ProtossAirArmorsLevel2
+235,5,CyberneticsCore researches ProtossAirArmorsLevel3
+235,6,CyberneticsCore researches WarpGateResearch
+236,0,TwilightCouncil researches Charge
+236,1,TwilightCouncil researches BlinkTech
+236,2,TwilightCouncil researches AdeptPiercingAttack
+237,None,TacNukeStrike
+240,None,EMP
+242,0,Lair trains Queen
+242,0,Hive trains Queen
+242,0,Hatchery trains Queen
+244,None,Transfusion
+253,None,AttackRedirect
+254,None,StimpackRedirect
+255,None,StimpackMarauderRedirect
+257,None,StopRedirect
+258,None,GenerateCreep
+259,0,Queen builds CreepTumorQueen
+260,None,SpineCrawlerUproot
+261,None,SporeCrawlerUproot
+262,None,SpineCrawlerRoot
+263,None,SporeCrawlerRoot
+264,0,CreepTumorBurrowed builds CreepTumor
+265,None,BuildAutoTurret
+266,None,ArchonWarp
+267,0,NydusNetwork builds NydusCanal
+269,None,Charge
+273,None,Contaminate
+276,None,que5Passive
+277,None,que5PassiveCancelToSelection
+305,None,DigesterCreepSpray
+309,None,MorphToMothership
+312,0,Nexus trains MothershipCore
+334,None,XelNagaHealingShrine
+343,None,MothershipCoreMassRecall
+345,None,MorphToHellion
+355,None,MorphToHellionTank
+363,None,MorphToSwarmHostBurrowedMP
+364,None,MorphToSwarmHostMP
+366,None,attackProtossBuilding
+368,None,stopProtossBuilding
+369,None,BlindingCloud
+371,None,Yoink
+374,None,ViperConsumeStructure
+377,None,TestZerg
+378,None,VolatileBurstBuilding
+385,None,WidowMineBurrow
+386,None,WidowMineUnburrow
+387,None,WidowMineAttack
+388,None,TornadoMissile
+392,None,BurrowLurkerMPDown
+393,None,BurrowLurkerMPUp
+394,None,UpgradeToLurkerDenMP
+395,None,HallucinationOracle
+396,None,MedivacSpeedBoost
+397,None,ExtendingBridgeNEWide8Out
+398,None,ExtendingBridgeNEWide8
+399,None,ExtendingBridgeNWWide8Out
+400,None,ExtendingBridgeNWWide8
+401,None,ExtendingBridgeNEWide10Out
+402,None,ExtendingBridgeNEWide10
+403,None,ExtendingBridgeNWWide10Out
+404,None,ExtendingBridgeNWWide10
+405,None,ExtendingBridgeNEWide12Out
+406,None,ExtendingBridgeNEWide12
+407,None,ExtendingBridgeNWWide12Out
+408,None,ExtendingBridgeNWWide12
+410,None,CritterFlee
+411,None,OracleRevelation
+419,None,MothershipCorePurifyNexus
+420,None,XelNaga_Caverns_DoorE
+421,None,XelNaga_Caverns_DoorEOpened
+422,None,XelNaga_Caverns_DoorN
+423,None,XelNaga_Caverns_DoorNE
+424,None,XelNaga_Caverns_DoorNEOpened
+425,None,XelNaga_Caverns_DoorNOpened
+426,None,XelNaga_Caverns_DoorNW
+427,None,XelNaga_Caverns_DoorNWOpened
+428,None,XelNaga_Caverns_DoorS
+429,None,XelNaga_Caverns_DoorSE
+430,None,XelNaga_Caverns_DoorSEOpened
+431,None,XelNaga_Caverns_DoorSOpened
+432,None,XelNaga_Caverns_DoorSW
+433,None,XelNaga_Caverns_DoorSWOpened
+434,None,XelNaga_Caverns_DoorW
+435,None,XelNaga_Caverns_DoorWOpened
+436,None,XelNaga_Caverns_Floating_BridgeNE8Out
+437,None,XelNaga_Caverns_Floating_BridgeNE8
+438,None,XelNaga_Caverns_Floating_BridgeNW8Out
+439,None,XelNaga_Caverns_Floating_BridgeNW8
+440,None,XelNaga_Caverns_Floating_BridgeNE10Out
+441,None,XelNaga_Caverns_Floating_BridgeNE10
+442,None,XelNaga_Caverns_Floating_BridgeNW10Out
+443,None,XelNaga_Caverns_Floating_BridgeNW10
+444,None,XelNaga_Caverns_Floating_BridgeNE12Out
+445,None,XelNaga_Caverns_Floating_BridgeNE12
+446,None,XelNaga_Caverns_Floating_BridgeNW12Out
+447,None,XelNaga_Caverns_Floating_BridgeNW12
+448,None,XelNaga_Caverns_Floating_BridgeH8Out
+449,None,XelNaga_Caverns_Floating_BridgeH8
+450,None,XelNaga_Caverns_Floating_BridgeV8Out
+451,None,XelNaga_Caverns_Floating_BridgeV8
+452,None,XelNaga_Caverns_Floating_BridgeH10Out
+453,None,XelNaga_Caverns_Floating_BridgeH10
+454,None,XelNaga_Caverns_Floating_BridgeV10Out
+455,None,XelNaga_Caverns_Floating_BridgeV10
+456,None,XelNaga_Caverns_Floating_BridgeH12Out
+457,None,XelNaga_Caverns_Floating_BridgeH12
+458,None,XelNaga_Caverns_Floating_BridgeV12Out
+459,None,XelNaga_Caverns_Floating_BridgeV12
+460,None,TemporalField
+484,None,SnowRefinery_Terran_ExtendingBridgeNEShort8Out
+485,None,SnowRefinery_Terran_ExtendingBridgeNEShort8
+486,None,SnowRefinery_Terran_ExtendingBridgeNWShort8Out
+487,None,SnowRefinery_Terran_ExtendingBridgeNWShort8
+501,None,CausticSpray
+503,None,ImmortalOverload
+504,None,MorphToRavager
+505,None,MorphToLurker
+507,None,ReleaseInterceptors
+508,None,RavagerCorrosiveBile
+509,None,BurrowRavagerDown
+510,None,BurrowRavagerUp
+512,None,PurificationNovaTargeted
+514,None,LockOn
+516,None,LockOnCancel
+518,None,Hyperjump
+520,None,ThorAPMode
+521,None,ThorNormalMode
+523,None,MothershipMassRecall
+524,None,NydusWormTransport
+525,None,OracleWeapon
+531,None,LocustMPFlyingSwoop
+532,None,HallucinationDisruptor
+533,None,HallucinationAdept
+534,None,VoidRaySwarmDamageBoost
+535,None,SeekerDummyChannel
+536,None,AiurLightBridgeNE8Out
+537,None,AiurLightBridgeNE8
+538,None,AiurLightBridgeNE10Out
+539,None,AiurLightBridgeNE10
+540,None,AiurLightBridgeNE12Out
+541,None,AiurLightBridgeNE12
+542,None,AiurLightBridgeNW8Out
+543,None,AiurLightBridgeNW8
+544,None,AiurLightBridgeNW10Out
+545,None,AiurLightBridgeNW10
+546,None,AiurLightBridgeNW12Out
+547,None,AiurLightBridgeNW12
+560,None,ShakurasLightBridgeNE8Out
+561,None,ShakurasLightBridgeNE8
+562,None,ShakurasLightBridgeNE10Out
+563,None,ShakurasLightBridgeNE10
+564,None,ShakurasLightBridgeNE12Out
+565,None,ShakurasLightBridgeNE12
+566,None,ShakurasLightBridgeNW8Out
+567,None,ShakurasLightBridgeNW8
+568,None,ShakurasLightBridgeNW10Out
+569,None,ShakurasLightBridgeNW10
+570,None,ShakurasLightBridgeNW12Out
+571,None,ShakurasLightBridgeNW12
+572,None,VoidMPImmortalReviveRebuild
+574,None,ArbiterMPStasisField
+575,None,ArbiterMPRecall
+576,None,CorsairMPDisruptionWeb
+577,None,MorphToGuardianMP
+578,None,MorphToDevourerMP
+579,None,DefilerMPConsume
+580,None,DefilerMPDarkSwarm
+581,None,DefilerMPPlague
+582,None,DefilerMPBurrow
+583,None,DefilerMPUnburrow
+584,None,QueenMPEnsnare
+585,None,QueenMPSpawnBroodlings
+586,None,QueenMPInfestCommandCenter
+590,0,Oracle builds OracleStasisTrap
+594,None,ParasiticBomb
+595,None,AdeptPhaseShift
+598,None,LurkerHoldFire
+599,None,LurkerRemoveHoldFire
+602,None,LiberatorAGTarget
+603,None,LiberatorAATarget
+605,None,AiurLightBridgeAbandonedNE8Out
+606,None,AiurLightBridgeAbandonedNE8
+607,None,AiurLightBridgeAbandonedNE10Out
+608,None,AiurLightBridgeAbandonedNE10
+609,None,AiurLightBridgeAbandonedNE12Out
+610,None,AiurLightBridgeAbandonedNE12
+611,None,AiurLightBridgeAbandonedNW8Out
+612,None,AiurLightBridgeAbandonedNW8
+613,None,AiurLightBridgeAbandonedNW10Out
+614,None,AiurLightBridgeAbandonedNW10
+615,None,AiurLightBridgeAbandonedNW12Out
+616,None,AiurLightBridgeAbandonedNW12
+617,None,KD8Charge
+620,None,AdeptPhaseShiftCancel
+621,None,AdeptShadePhaseShiftCancel
+622,None,SlaynElementalGrab
+624,None,PortCity_Bridge_UnitNE8Out
+625,None,PortCity_Bridge_UnitNE8
+626,None,PortCity_Bridge_UnitSE8Out
+627,None,PortCity_Bridge_UnitSE8
+628,None,PortCity_Bridge_UnitNW8Out
+629,None,PortCity_Bridge_UnitNW8
+630,None,PortCity_Bridge_UnitSW8Out
+631,None,PortCity_Bridge_UnitSW8
+632,None,PortCity_Bridge_UnitNE10Out
+633,None,PortCity_Bridge_UnitNE10
+634,None,PortCity_Bridge_UnitSE10Out
+635,None,PortCity_Bridge_UnitSE10
+636,None,PortCity_Bridge_UnitNW10Out
+637,None,PortCity_Bridge_UnitNW10
+638,None,PortCity_Bridge_UnitSW10Out
+639,None,PortCity_Bridge_UnitSW10
+640,None,PortCity_Bridge_UnitNE12Out
+641,None,PortCity_Bridge_UnitNE12
+642,None,PortCity_Bridge_UnitSE12Out
+643,None,PortCity_Bridge_UnitSE12
+644,None,PortCity_Bridge_UnitNW12Out
+645,None,PortCity_Bridge_UnitNW12
+646,None,PortCity_Bridge_UnitSW12Out
+647,None,PortCity_Bridge_UnitSW12
+648,None,PortCity_Bridge_UnitN8Out
+649,None,PortCity_Bridge_UnitN8
+650,None,PortCity_Bridge_UnitS8Out
+651,None,PortCity_Bridge_UnitS8
+652,None,PortCity_Bridge_UnitE8Out
+653,None,PortCity_Bridge_UnitE8
+654,None,PortCity_Bridge_UnitW8Out
+655,None,PortCity_Bridge_UnitW8
+656,None,PortCity_Bridge_UnitN10Out
+657,None,PortCity_Bridge_UnitN10
+658,None,PortCity_Bridge_UnitS10Out
+659,None,PortCity_Bridge_UnitS10
+660,None,PortCity_Bridge_UnitE10Out
+661,None,PortCity_Bridge_UnitE10
+662,None,PortCity_Bridge_UnitW10Out
+663,None,PortCity_Bridge_UnitW10
+664,None,PortCity_Bridge_UnitN12Out
+665,None,PortCity_Bridge_UnitN12
+666,None,PortCity_Bridge_UnitS12Out
+667,None,PortCity_Bridge_UnitS12
+668,None,PortCity_Bridge_UnitE12Out
+669,None,PortCity_Bridge_UnitE12
+670,None,PortCity_Bridge_UnitW12Out
+671,None,PortCity_Bridge_UnitW12
+676,None,SpawnLocustsTargeted
+678,None,MorphToTransportOverlord
+681,None,ChannelSnipe
