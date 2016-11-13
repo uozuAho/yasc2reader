@@ -24,6 +24,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="example.py" />
+    <Compile Include="scripts\get_abilities.py" />
+    <Compile Include="scripts\get_units.py" />
+    <Compile Include="scripts\update_data.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="yasc2reader\data\abilities.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="yasc2reader\gameevents.py" />
     <Compile Include="yasc2reader\yasc2replay.py" />
     <Compile Include="yasc2reader\s2protocol\decoders.py" />
@@ -99,7 +107,9 @@
     <Compile Include="yasc2reader\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="scripts\" />
     <Folder Include="yasc2reader" />
+    <Folder Include="yasc2reader\data\" />
     <Folder Include="yasc2reader\s2protocol" />
     <Folder Include="yasc2reader\s2protocol\mpyq" />
   </ItemGroup>

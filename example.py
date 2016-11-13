@@ -5,8 +5,9 @@ from yasc2reader import yasc2replay
 def main():
     args = get_arg_parser().parse_args()
     replay = yasc2replay.load(args.replay_file)
-    replay.get_summary()
-    all_events = list(replay.get_tracker_events()) + list(replay.get_game_events())
+    print replay
+    all_events = list(replay.get_game_events())
+    # all_events = list(replay.get_tracker_events()) + list(replay.get_game_events())
     for event in sorted(all_events, key=lambda e: e.gameloop):
         print event
 
