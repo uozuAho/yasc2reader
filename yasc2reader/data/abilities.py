@@ -53,4 +53,4 @@ class Ability:
     def __init__(self, link, index, name):
         self.link = int(link)
         self.index = int(index) if index != 'None' else 0
-        self.name = name
+        self.name = name.strip()

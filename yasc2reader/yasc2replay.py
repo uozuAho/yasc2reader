@@ -7,15 +7,16 @@ import trackerevents
 from data import abilities
 
 
-def load(path):
-    return Replay(path)
+def load(path, include_game_data=True):
+    return Replay(path, include_game_data)
 
 
 class Replay:
-    def __init__(self, path):
+    def __init__(self, path, include_game_data=True):
         self.path = path
         self.archive = mpyq.MPQArchive(path)
         self.reader = self._get_replay_reader()
+        self.include_game_data = include_game_data
         # GameData
         self.game_data = None
         # Version
@@ -34,7 +35,7 @@ class Replay:
     def get_game_events(self):
         contents = self.archive.read_file('replay.game.events')
         for event in self.reader.decode_replay_game_events(contents):
-            yield gameevents.create_game_event(event, self.players, game_data=self.game_data)
+            yield gameevents.create_game_event(event, self.players, self.game_data)
 
     def _get_replay_reader(self):
         # Read the protocol header, this can be read with any protocol
@@ -58,7 +59,8 @@ class Replay:
             self.players += [Player(player)]
         self.map_name = details['m_title']
         # game data
-        self.game_data = GameData(self.version.build)
+        if self.include_game_data:
+            self.game_data = GameData(self.version.build)
 
     def __str__(self):
         return 'Replay version {}, map: {}, players: {}'.format(
