@@ -23,6 +23,8 @@ class Replay:
         self.version = None
         # str
         self.map_name = None
+        # int
+        self.replay_length_gameloops = None
         # list of [Player]
         self.players = []
         self._init_data()
@@ -48,10 +50,15 @@ class Replay:
         return getattr(module, protocol_name)
 
     def _init_data(self):
+        # ---------------------------------------
+        # read header
         # version
         contents = self.archive.header['user_data_header']['content']
         header = self.reader.decode_replay_header(contents)
         self.version = Version(header['m_version'])
+        self.replay_length_gameloops = header['m_elapsedGameLoops']
+        # ---------------------------------------
+        # read details
         # players
         contents = self.archive.read_file('replay.details')
         details = self.reader.decode_replay_details(contents)
@@ -72,6 +79,7 @@ class Player:
         self.data = data
         self.name = data['m_name']
         self.race = data['m_race']
+        self.won = True if data['m_result'] == 1 else False
 
     def __str__(self):
         return '{} ({})'.format(self.name, self.race)

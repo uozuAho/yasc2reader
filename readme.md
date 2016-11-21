@@ -11,3 +11,6 @@ Started after trying the following:
 - [scelight](https://github.com/icza/scelight)
     + Seems to be the most up-to-date, but way too complex for simple data
       extraction
+
+# todo
+- validate extracted data against scelight analysis

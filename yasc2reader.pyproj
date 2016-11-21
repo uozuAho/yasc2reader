@@ -32,6 +32,9 @@
     <Compile Include="tocsv.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="tocsv_summary.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="yasc2reader\data\abilities.py">
       <SubType>Code</SubType>
     </Compile>
