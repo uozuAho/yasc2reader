@@ -34,29 +34,25 @@ class ReplaySummariser:
     def write(self, path):
         if len(self.replay_paths) == 0:
             return
+        cols, rows = self._get_all_data()
         with open(path, 'wb') as csvfile:
-            out = csv.DictWriter(csvfile, self._get_columns())
+            out = csv.DictWriter(csvfile, cols)
             out.writeheader()
-            i = 1
-            for row in self._get_rows():
-                print i
+            for row in rows:
                 out.writerow(row)
-                i += 1
 
-    # TODO: optimisation: get col headings and data in single pass.
-    # idea: write rows to file, collecting cols as you go
-    #       final step is to insert column headings at top of file
-    def _get_columns(self):
+    def _get_all_data(self):
+        """ Returns cols, rows """
         cols = set([])
+        rows = []
+        i = 1
         for path in self.replay_paths:
+            print i
+            i += 1
             summary = ReplaySummary(path)
             cols = cols.union(set(summary.get_row().keys()))
-        return list(cols)
-
-    def _get_rows(self):
-        for path in self.replay_paths:
-            summary = ReplaySummary(path)
-            yield summary.get_row()
+            rows.append(summary.get_row())
+        return list(cols), rows
 
     def _get_replay_paths(self):
         return glob.glob(self.args.input_pattern)
@@ -65,6 +61,8 @@ class ReplaySummariser:
 class ReplaySummary:
     def __init__(self, replay_path):
         self.replay_path = replay_path
+        self.unit_counter = UnitCounter()
+        self.last_event_grabber = LastEventsGrabber()
 
     def get_row(self):
         replay = yasc2replay.load(self.replay_path, include_game_data=False)
@@ -79,11 +77,15 @@ class ReplaySummary:
             'winner_name': replay.players[winner_id].name,
             'gameloops': replay.replay_length_gameloops
         }
-        last_stat_events = self._get_last_tracker_stats_events(replay)
-        rowdata.update(self._tracker_stats_events_to_row_data(last_stat_events))
-        unit_counts = self._get_unit_counts(replay)
-        rowdata.update(self._unit_counts_to_row_data(unit_counts))
+        self._process_tracker_events(replay.get_tracker_events())
+        rowdata.update(self._tracker_stats_events_to_row_data(self.last_event_grabber.last_events))
+        rowdata.update(self._unit_counts_to_row_data(self.unit_counter.counts))
         return rowdata
+
+    def _process_tracker_events(self, events):
+        for event in events:
+            self.unit_counter.process_event(event)
+            self.last_event_grabber.process_event(event)
 
     def _get_winner_id(self, replay):
         """ Returns the index of the winning player """
@@ -99,15 +101,6 @@ class ReplaySummary:
                 data['p{}.{}'.format(player_id, stat)] = value
         return data
 
-    def _get_last_tracker_stats_events(self, replay):
-        # last tracker stats event per player
-        last_events = {}
-        for event in replay.get_tracker_events():
-            if event.data['_event'] == 'NNet.Replay.Tracker.SPlayerStatsEvent':
-                player_id = event.data['m_playerId']
-                last_events[player_id] = event
-        return last_events
-
     def _unit_counts_to_row_data(self, counts):
         data = {}
         for tracker_player_id, unit_counts in counts.items():
@@ -116,33 +109,44 @@ class ReplaySummary:
                 data['p{}.totals.{}'.format(player_id, unit)] = count
         return data
 
-
-    def _get_unit_counts(self, replay):
-        """ Returns: dict: {player_id (int): {unit_name (str): count (int)}}
-
-            NOTE: player_id is that of tracker_events (first player id = 1)
-        """
-        counts = {}
-        for event in replay.get_tracker_events():
-            if event.data['_event'] == 'NNet.Replay.Tracker.SUnitBornEvent':
-                # NOTE: player ids start at 1, player 0 creates minerals etc.s
-                player_id = event.data['m_controlPlayerId']
-                if player_id == 0:
-                    continue
-                if player_id not in counts:
-                    counts[player_id] = {}
-                unit = event.data['m_unitTypeName']
-                # Not sure why these don't get counted together...dunno what they are anyway
-                if unit.startswith("Beacon"):
-                    continue
-                if unit in counts[player_id]:
-                    counts[player_id][unit] += 1
-                else:
-                    counts[player_id][unit] = 1
-        return counts
-
     def _tracker_player_id_to_replay_player_id(self, tracker_id):
         return tracker_id - 1
+
+
+class TrackerEventProcessor(object):
+    def process_event(self, event):
+        pass
+
+class LastEventsGrabber(TrackerEventProcessor):
+    def __init__(self):
+        self.last_events = {}
+
+    def process_event(self, event):
+        if event.data['_event'] == 'NNet.Replay.Tracker.SPlayerStatsEvent':
+            player_id = event.data['m_playerId']
+            self.last_events[player_id] = event
+
+class UnitCounter(TrackerEventProcessor):
+    def __init__(self):
+        self.counts = {}
+
+    def process_event(self, event):
+        if event.data['_event'] == 'NNet.Replay.Tracker.SUnitBornEvent':
+            # NOTE: player ids start at 1, player 0 creates minerals etc.s
+            player_id = event.data['m_controlPlayerId']
+            if player_id == 0:
+                return
+            if player_id not in self.counts:
+                self.counts[player_id] = {}
+            unit = event.data['m_unitTypeName']
+            # Not sure why these don't get counted together...dunno what they are anyway
+            if unit.startswith("Beacon"):
+                return
+            if unit in self.counts[player_id]:
+                self.counts[player_id][unit] += 1
+            else:
+                self.counts[player_id][unit] = 1
+
 
 if __name__ == '__main__':
     main()
