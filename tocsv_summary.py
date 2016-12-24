@@ -34,29 +34,25 @@ class ReplaySummariser:
     def write(self, path):
         if len(self.replay_paths) == 0:
             return
+        cols, rows = self._get_all_data()
         with open(path, 'wb') as csvfile:
-            out = csv.DictWriter(csvfile, self._get_columns())
+            out = csv.DictWriter(csvfile, cols)
             out.writeheader()
-            i = 1
-            for row in self._get_rows():
-                print i
+            for row in rows:
                 out.writerow(row)
-                i += 1
 
-    # TODO: optimisation: get col headings and data in single pass.
-    # idea: write rows to file, collecting cols as you go
-    #       final step is to insert column headings at top of file
-    def _get_columns(self):
+    def _get_all_data(self):
+        """ Returns cols, rows """
         cols = set([])
+        rows = []
+        i = 1
         for path in self.replay_paths:
+            print i
+            i += 1
             summary = ReplaySummary(path)
             cols = cols.union(set(summary.get_row().keys()))
-        return list(cols)
-
-    def _get_rows(self):
-        for path in self.replay_paths:
-            summary = ReplaySummary(path)
-            yield summary.get_row()
+            rows.append(summary.get_row())
+        return list(cols), rows
 
     def _get_replay_paths(self):
         return glob.glob(self.args.input_pattern)
