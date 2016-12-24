@@ -66,6 +66,7 @@ class ReplaySummary:
     def __init__(self, replay_path):
         self.replay_path = replay_path
         self.unit_counter = UnitCounter()
+        self.last_event_grabber = LastEventsGrabber()
 
     def get_row(self):
         replay = yasc2replay.load(self.replay_path, include_game_data=False)
@@ -81,14 +82,14 @@ class ReplaySummary:
             'gameloops': replay.replay_length_gameloops
         }
         self._process_tracker_events(replay.get_tracker_events())
-        last_stat_events = self._get_last_tracker_stats_events(replay)
-        rowdata.update(self._tracker_stats_events_to_row_data(last_stat_events))
+        rowdata.update(self._tracker_stats_events_to_row_data(self.last_event_grabber.last_events))
         rowdata.update(self._unit_counts_to_row_data(self.unit_counter.counts))
         return rowdata
 
     def _process_tracker_events(self, events):
         for event in events:
             self.unit_counter.process_event(event)
+            self.last_event_grabber.process_event(event)
 
     def _get_winner_id(self, replay):
         """ Returns the index of the winning player """
@@ -103,15 +104,6 @@ class ReplaySummary:
             for stat, value in event.data['m_stats'].items():
                 data['p{}.{}'.format(player_id, stat)] = value
         return data
-
-    def _get_last_tracker_stats_events(self, replay):
-        # last tracker stats event per player
-        last_events = {}
-        for event in replay.get_tracker_events():
-            if event.data['_event'] == 'NNet.Replay.Tracker.SPlayerStatsEvent':
-                player_id = event.data['m_playerId']
-                last_events[player_id] = event
-        return last_events
 
     def _unit_counts_to_row_data(self, counts):
         data = {}
