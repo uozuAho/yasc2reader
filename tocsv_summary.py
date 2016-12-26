@@ -10,13 +10,14 @@
 import argparse
 import csv
 import glob
+import multiprocessing as mp
+import Queue
 from yasc2reader import yasc2replay
 
 
 def main():
     args = get_arg_parser().parse_args()
     writer = ReplaySummariser(args)
-    print 'summarising {} replays'.format(len(writer.replay_paths))
     writer.write(args.output_file)
 
 def get_arg_parser():
@@ -30,10 +31,15 @@ class ReplaySummariser:
     def __init__(self, args):
         self.args = args
         self.replay_paths = self._get_replay_paths()
+        try:
+            self.num_cpus = mp.cpu_count()
+        except:
+            self.num_cpus = 4
 
     def write(self, path):
         if len(self.replay_paths) == 0:
             return
+        print 'summarising {} replays'.format(len(self.replay_paths))
         cols, rows = self._get_all_data()
         with open(path, 'wb') as csvfile:
             out = csv.DictWriter(csvfile, cols)
@@ -43,17 +49,35 @@ class ReplaySummariser:
 
     def _get_all_data(self):
         """ Returns cols, rows """
+        paths = mp.Queue()
+        rowq = mp.Queue()
+        for path in self.replay_paths:
+            paths.put(path)
+        for i in range(self.num_cpus):
+            p = mp.Process(target=self._get_data_worker, args=(paths, rowq))
+            p.start()
         cols = set([])
         rows = []
-        i = 1
-        for path in self.replay_paths:
-            print i
-            i += 1
-            summary = ReplaySummary(path)
-            row = summary.get_row()
-            cols.union(set(row.keys()))
+        for i in range(len(self.replay_paths)):
+            row = rowq.get()
+            cols = cols.union(set(row.keys()))
             rows.append(row)
+            print i
         return list(cols), rows
+
+    def _get_data_worker(self, replay_paths, rows):
+        """
+        Params:
+            replay_paths: queue of replay paths
+            rows:         queue of {row}
+        """
+        try:
+            while True:
+                path = replay_paths.get(timeout=1)
+                summary = ReplaySummary(path)
+                rows.put(summary.get_row())
+        except Queue.Empty:
+            pass
 
     def _get_replay_paths(self):
         return glob.glob(self.args.input_pattern)
