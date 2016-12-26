@@ -50,8 +50,9 @@ class ReplaySummariser:
             print i
             i += 1
             summary = ReplaySummary(path)
-            cols = cols.union(set(summary.get_row().keys()))
-            rows.append(summary.get_row())
+            row = summary.get_row()
+            cols.union(set(row.keys()))
+            rows.append(row)
         return list(cols), rows
 
     def _get_replay_paths(self):
