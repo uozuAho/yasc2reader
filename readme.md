@@ -12,5 +12,18 @@ Started after trying the following:
     + Seems to be the most up-to-date, but way too complex for simple data
       extraction
 
+# Usage
+
+## Output replay summaries to csv (1 row per replay)
+
+`python tocsv_summary.py "my/replay/path/*.SC2Replay" replays.csv`
+
+## Output single replay to csv
+
+`python tocsv.py my_replay.SC2Replay my_replay.csv`
+
+Run with -h option to see more usage info.
+
+
 # todo
 - validate extracted data against scelight analysis

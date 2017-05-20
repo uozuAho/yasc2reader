@@ -22,7 +22,7 @@ def main():
 
 def get_arg_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('input_pattern', help='pattern of replay files to load, eg. mydir/*.SC2Replay')
+    parser.add_argument('input_pattern', help='Pattern of replay files to load, eg. "mydir/*.SC2Replay"')
     parser.add_argument('output_file', help='path to write csv data to')
     return parser
 
