@@ -10,9 +10,9 @@
 
 import argparse
 
-from tocsv_summary import ReplaySummariser
-from tocsv import CsvWriter
 from yasc2reader import yasc2replay
+from yasc2reader.replay_summariser import ReplaySummariser
+from yasc2reader.replay_extractor import ReplayExtractor
 
 
 def main():
@@ -57,7 +57,7 @@ class SingleReader:
 
     def run(self, args):
         replay = yasc2replay.load(args.replay_file, include_game_data=False)
-        writer = CsvWriter(replay, args.load_abilities, 
+        writer = ReplayExtractor(replay, args.load_abilities, 
             args.include_events or [], args.exclude_events or [])
         writer.write(args.output_file)
 
