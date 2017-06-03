@@ -14,22 +14,25 @@ Started after trying the following:
 
 # Usage
 
+## Raw s2protocol output
+
 Blizzard's s2protocol outputs data in python format. To get all data from a
 replay, run
-```
-python s2protocol.py --gameevents --messageevents --trackerevents \
---attributeevents --header --details --initdata --stats replay_file
-```
 
-## Output replay summaries to csv (1 row per replay)
+    python yasc2reader/s2protocol/s2protocol.py --gameevents --messageevents \
+    --trackerevents --attributeevents --header --details --initdata --stats \
+    my_replay.SC2Replay > my_replay.py
 
-`python tocsv_summary.py "my/replay/path/*.SC2Replay" replays.csv`
+## Csv output (single replay)
 
-## Output single replay to csv
+    python sc2csv.py single my_replay.SC2Replay my_replay.csv
 
-`python tocsv.py my_replay.SC2Replay my_replay.csv`
+## Csv summary output (1 or more replays, 1 replay per line)
 
-Run with -h option to see more usage info.
+    python sc2csv.py summarise "my/replays/*.SC2Replay" my_replays.csv
+
+
+Run `python sc2csv.py -h` for more usage info.
 
 
 # todo
