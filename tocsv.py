@@ -13,25 +13,6 @@ from fnmatch import fnmatch
 from yasc2reader import yasc2replay
 
 
-def main():
-    args = get_arg_parser().parse_args()
-    replay = yasc2replay.load(args.replay_file, include_game_data=False)
-    writer = CsvWriter(replay, args)
-    writer.write(args.output_file)
-
-def get_arg_parser():
-    parser = argparse.ArgumentParser()
-    add_args(parser)
-    return parser
-
-def add_args(parser):
-    parser.add_argument('replay_file', help='.SC2Replay file to load')
-    parser.add_argument('output_file', help='path to write csv data to')
-    parser.add_argument('--load-abilities', action='store_true', help='include additional ability information')
-    action = parser.add_mutually_exclusive_group()
-    action.add_argument('--exclude-events', nargs='+', help='event types to exclude from output. Can use fnmatch patterns.')
-    action.add_argument('--include-events', nargs='+', help='event types to include in output. Can use fnmatch patterns.')
-
 class CsvWriter:
     def __init__(self, replay, args):
         self.replay = replay
