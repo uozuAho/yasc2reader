@@ -14,6 +14,13 @@ Started after trying the following:
 
 # Usage
 
+Blizzard's s2protocol outputs data in python format. To get all data from a
+replay, run
+```
+python s2protocol.py --gameevents --messageevents --trackerevents \
+--attributeevents --header --details --initdata --stats replay_file
+```
+
 ## Output replay summaries to csv (1 row per replay)
 
 `python tocsv_summary.py "my/replay/path/*.SC2Replay" replays.csv`
@@ -27,3 +34,9 @@ Run with -h option to see more usage info.
 
 # todo
 - validate extracted data against scelight analysis
+- document how to use stuff in scripts/ It's something like
+    + use the sc2 map editor to extact some files somewhere
+    + run the scripts, pointing to the extracted files
+    + the scripts generate extra data such as unit names, abilities etc.
+      that can be used when reading replays
+    + I think this is how yasc2reader/data/abilities_47484.csv & units was generated
