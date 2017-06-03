@@ -1,13 +1,10 @@
 """
-    Extract summarised replay data into a flattened csv file, for eg. loading into R
-
     As much as possible, don't couple this to the rest of this library. This script
     should be able to output whatever s2protocol throws at it without issue.
     Additional data such as ability names etc. must all be optional.
 """
 
 
-import argparse
 import csv
 import glob
 import multiprocessing as mp
@@ -16,8 +13,13 @@ from yasc2reader import yasc2replay
 
 
 class ReplaySummariser:
-    def __init__(self, args):
-        self.args = args
+    """Extract summarised replay data into a flattened csv file, for eg. loading into R
+
+    Args:
+        - input_pattern (str): filepath pattern to glob input files
+    """
+    def __init__(self, input_pattern):
+        self.input_pattern = input_pattern
         self.replay_paths = self._get_replay_paths()
         try:
             self.num_cpus = mp.cpu_count()
@@ -68,7 +70,7 @@ class ReplaySummariser:
             pass
 
     def _get_replay_paths(self):
-        return glob.glob(self.args.input_pattern)
+        return glob.glob(self.input_pattern)
 
 
 class ReplaySummary:

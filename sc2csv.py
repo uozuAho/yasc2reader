@@ -25,12 +25,14 @@ def get_arg_parser():
     subparsers = parser.add_subparsers(help='command to run')
 
     single_reader = SingleReader()
-    single_parser = subparsers.add_parser('single', help='extract a single replay to csv')
+    single_parser = subparsers.add_parser('single', 
+        help='extract a single replay to csv')
     single_reader.add_args(single_parser)
     single_parser.set_defaults(func=single_reader.run)
 
     summariser = Summariser()
-    summarise_parser = subparsers.add_parser('summarise', help='summarise one or more replays into a single csv')
+    summarise_parser = subparsers.add_parser('summarise', 
+        help='summarise one or more replays into a single csv')
     summariser.add_args(summarise_parser)
     summarise_parser.set_defaults(func=summariser.run)
     
@@ -55,17 +57,21 @@ class SingleReader:
 
     def run(self, args):
         replay = yasc2replay.load(args.replay_file, include_game_data=False)
-        writer = CsvWriter(replay, args.load_abilities, args.include_events or [], args.exclude_events or [])
+        writer = CsvWriter(replay, args.load_abilities, 
+            args.include_events or [], args.exclude_events or [])
         writer.write(args.output_file)
 
 
 class Summariser:
     def add_args(self, parser):
-        parser.add_argument('input_pattern', help='Pattern of replay files to load, eg. "mydir/*.SC2Replay"')
+        parser.add_argument('input_pattern', 
+            help='Pattern of replay files to load, eg. "mydir/*.SC2Replay". '
+                 'Note that quotes are necessary to prevent the shell from '
+                 'expanding the pattern.')
         parser.add_argument('output_file', help='path to write csv data to')
 
     def run(self, args):
-        writer = ReplaySummariser(args)
+        writer = ReplaySummariser(args.input_pattern)
         writer.write(args.output_file)
 
 
