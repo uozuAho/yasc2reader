@@ -22,9 +22,13 @@ def main():
 
 def get_arg_parser():
     parser = argparse.ArgumentParser()
+    add_args(parser)
+    return parser
+
+def add_args(parser):
+    """ Add args to an existing parser """
     parser.add_argument('input_pattern', help='Pattern of replay files to load, eg. "mydir/*.SC2Replay"')
     parser.add_argument('output_file', help='path to write csv data to')
-    return parser
 
 
 class ReplaySummariser:
