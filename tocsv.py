@@ -1,24 +1,31 @@
 """
-    Extract replay data into a flattened csv file, for eg. loading into R
-
     As much as possible, don't couple this to the rest of this library. This script
     should be able to output whatever s2protocol throws at it without issue.
     Additional data such as ability names etc. must all be optional.
 """
 
 
-import argparse
 import csv
 from fnmatch import fnmatch
 from yasc2reader import yasc2replay
 
 
 class CsvWriter:
-    def __init__(self, replay, args):
+    """Extract replay data into a flattened csv file, for eg. loading into R
+
+    Args:
+        * replay (yasc2replay)
+        * load_abilites (bool):       Load ability data from an external file
+        * include_events (list(str)): Filters to include game events (fnmatch patterns)
+        * exclude_events (list(str)): Filters to exclude game events (fnmatch patterns)
+                                      Overrides include_events.
+    """
+    def __init__(self, replay, load_abilities=False, include_events=[], exclude_events=[]):
         self.replay = replay
-        self.args = args
         # todo: decouple this from replay. Just want replay for its version info
-        self.abilities = replay.game_data.abilities if args.load_abilities else None
+        self.abilities = replay.game_data.abilities if load_abilities else None
+        self.include_events = include_events
+        self.exclude_events = exclude_events
 
     def write(self, path):
         with open(path, 'wb') as csvfile:
@@ -54,30 +61,22 @@ class CsvWriter:
             data['ability_name'] = self.abilities.first(link, index).name
 
     def _can_output_event(self, event):
-        if self.args.include_events is not None:
+        if len(self.include_events) > 0:
             return self._is_event_included(event)
         else:
             return self._is_event_excluded(event)
 
     def _is_event_included(self, event):
-        if self.args.include_events is None:
-            return True
-        else:
-            for pattern in self.args.include_events:
-                if fnmatch(event['_event'], pattern):
-                    return True
-            return False
-        raise Exception("shouldn't get here")
+        for pattern in self.include_events:
+            if fnmatch(event['_event'], pattern):
+                return True
+        return False
 
     def _is_event_excluded(self, event):
-        if self.args.exclude_events is None:
-            return False
-        else:
-            for pattern in self.args.exclude_events:
-                if fnmatch(event['_event'], pattern):
-                    return True
-            return False
-        raise Exception("shouldn't get here")
+        for pattern in self.exclude_events:
+            if fnmatch(event['_event'], pattern):
+                return True
+        return False
 
 
 def flatten(dict_or_list, parent_key='', separator=':'):

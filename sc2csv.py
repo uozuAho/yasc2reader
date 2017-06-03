@@ -41,14 +41,21 @@ class SingleReader:
     def add_args(self, parser):
         parser.add_argument('replay_file', help='.SC2Replay file to load')
         parser.add_argument('output_file', help='path to write csv data to')
-        parser.add_argument('--load-abilities', action='store_true', help='include additional ability information')
+        parser.add_argument('--load-abilities', action='store_true', 
+            help='include additional ability information')
         action = parser.add_mutually_exclusive_group()
-        action.add_argument('--exclude-events', nargs='+', help='event types to exclude from output. Can use fnmatch patterns.')
-        action.add_argument('--include-events', nargs='+', help='event types to include in output. Can use fnmatch patterns.')
+        action.add_argument('--include-events', nargs='+',
+            help='event types to include in output. Can use fnmatch patterns.',
+            default=["NNet.Game.SCmdEvent", 
+                    "NNet.Replay.Tracker.SUnitBornEvent",
+                    "NNet.Replay.Tracker.SPlayerStatsEvent",
+                    "NNet.Replay.Tracker.SUnitDiedEvent"])
+        action.add_argument('--exclude-events', nargs='+',
+            help='event types to exclude from output. Can use fnmatch patterns.')
 
     def run(self, args):
         replay = yasc2replay.load(args.replay_file, include_game_data=False)
-        writer = CsvWriter(replay, args)
+        writer = CsvWriter(replay, args.load_abilities, args.include_events or [], args.exclude_events or [])
         writer.write(args.output_file)
 
 
