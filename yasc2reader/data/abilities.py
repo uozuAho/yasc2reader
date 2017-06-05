@@ -49,6 +49,12 @@ class Abilities:
     def first(self, link, index):
         return self.abilities[link][index][0]
 
+    def first_or_none(self, link, index):
+        try:
+            return self.first(link, index)
+        except:
+            return None
+
 class Ability:
     def __init__(self, link, index, name):
         self.link = int(link)

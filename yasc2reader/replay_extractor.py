@@ -8,6 +8,7 @@
 import csv
 from fnmatch import fnmatch
 
+from data import abilities
 import yasc2replay
 
 
@@ -23,8 +24,7 @@ class ReplayExtractor:
     """
     def __init__(self, replay, load_abilities=False, include_events=[], exclude_events=[]):
         self.replay = replay
-        # todo: decouple this from replay. Just want replay for its version info
-        self.abilities = replay.game_data.abilities if load_abilities else None
+        self.abilities = abilities.get_abilities(replay.version.build)
         self.include_events = include_events
         self.exclude_events = exclude_events
 
@@ -59,7 +59,8 @@ class ReplayExtractor:
             link = abil['m_abilLink']
             index = abil['m_abilCmdIndex']
             # first may return a misleading name, but can be helpful
-            data['ability_name'] = self.abilities.first(link, index).name
+            first_abil = self.abilities.first_or_none(link, index)
+            data['ability_name'] = first_abil.name if first_abil else None
 
     def _can_output_event(self, event):
         if len(self.include_events) > 0:

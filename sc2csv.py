@@ -56,10 +56,10 @@ class SingleReader:
             help='event types to exclude from output. Can use fnmatch patterns.')
 
     def run(self, args):
-        replay = yasc2replay.load(args.replay_file, include_game_data=False)
-        writer = ReplayExtractor(replay, args.load_abilities, 
+        replay = yasc2replay.load(args.replay_file)
+        ext = ReplayExtractor(replay, args.load_abilities,
             args.include_events or [], args.exclude_events or [])
-        writer.write(args.output_file)
+        ext.write(args.output_file)
 
 
 class Summariser:

@@ -1,11 +1,11 @@
-def create_game_event(data, players, game_data=None):
+def create_game_event(data, players):
     if data['_event'] == 'NNet.Game.SCmdEvent':
-        return CmdEvent(data, players, game_data)
+        return CmdEvent(data, players)
     else:
-        return GameEvent(data, players, game_data)
+        return GameEvent(data, players)
 
 class GameEvent(object):
-    def __init__(self, data, players, game_data):
+    def __init__(self, data, players):
         self.data = data
         self.type = data['_event']
         self.gameloop = data['_gameloop']
@@ -16,8 +16,8 @@ class GameEvent(object):
         return "{}: {}: {}".format(self.gameloop, self.player, self.type)
 
 class CmdEvent(GameEvent):
-    def __init__(self, data, players, game_data):
-        super(CmdEvent, self).__init__(data, players, game_data)
+    def __init__(self, data, players):
+        super(CmdEvent, self).__init__(data, players)
         self.ability = None
         self.ability_link = None
         self.ability_index = None
@@ -26,9 +26,6 @@ class CmdEvent(GameEvent):
             index = data['m_abil']['m_abilCmdIndex']
             self.ability_link = link
             self.ability_index = index
-            if game_data is not None:
-                # TODO: this could return wrong results. global options to disable bad data?
-                self.ability = game_data.abilities.first(link, index)
 
     def __str__(self):
         ability_str = self.ability.name if self.ability is not None else 'unknown'
