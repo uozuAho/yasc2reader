@@ -81,7 +81,7 @@ class ReplaySummary:
         self.last_event_grabber = LastEventsGrabber()
 
     def get_row(self):
-        replay = yasc2replay.load(self.replay_path, include_game_data=False)
+        replay = yasc2replay.load(self.replay_path)
         winner_id = self._get_winner_id(replay)
         rowdata = {
             'p0.name': replay.players[0].name,
