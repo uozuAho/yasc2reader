@@ -33,8 +33,16 @@ replay, run
 
     python sc2csv.py summarise "my/replays/*.SC2Replay" my_replays.csv
 
-
 Run `python sc2csv.py -h` for more usage info.
+
+
+## Human readable output (single replay)
+
+For a one-line summary:
+
+    python sc2read.py summary my_replay.SC2Replay
+
+Run `python sc2read.py -h` for more usage info.
 
 
 --------------------------------------------------------------------------------
