@@ -4,7 +4,6 @@ from s2protocol import protocol15405
 
 import gameevents
 import trackerevents
-from data import abilities
 
 
 def load(path):
@@ -65,7 +64,7 @@ class Replay:
 
     def __str__(self):
         return 'Replay version {}, map: {}, players: {}'.format(
-            self.version, self.map_name, ','.join(str(p) for p in self.players))
+            self.version, self.map_name, ', '.join(str(p) for p in self.players))
 
 
 class Player:
