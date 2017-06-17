@@ -12,6 +12,8 @@ Started after trying the following:
     + Seems to be the most up-to-date, but way too complex for simple data
       extraction
 
+
+--------------------------------------------------------------------------------
 # Usage
 
 ## Raw s2protocol output
@@ -35,11 +37,26 @@ replay, run
 Run `python sc2csv.py -h` for more usage info.
 
 
+--------------------------------------------------------------------------------
+# Extracting game data
+
+Starcraft 2 replay files don't contain unit & ability names. This data can be
+extracted by using the Starcraft 2 map editor, and imported for use by
+yasc2reader:
+
+- open SC2 map editor
+- note the build number from Help -> About Starcraft 2 Editor...
+    + Version: Major.Minor.Revision (Build)
+- select File -> Export Balance Data
+- choose the appropriate expansion, and directory to export to (export dir)
+- run
+
+    python scripts/update_data.py <export dir> <build number> yasc2reader/data
+
+This should add the csv files abilities_<build number> and units_<build number>
+to yasc2reader/data.
+
+
+--------------------------------------------------------------------------------
 # todo
 - validate extracted data against scelight analysis
-- document how to use stuff in scripts/ It's something like
-    + use the sc2 map editor to extact some files somewhere
-    + run the scripts, pointing to the extracted files
-    + the scripts generate extra data such as unit names, abilities etc.
-      that can be used when reading replays
-    + I think this is how yasc2reader/data/abilities_47484.csv & units was generated
