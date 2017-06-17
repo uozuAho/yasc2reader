@@ -4,7 +4,6 @@ from s2protocol import protocol15405
 
 import gameevents
 import trackerevents
-from data import abilities
 
 
 def load(path):

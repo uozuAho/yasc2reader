@@ -1,23 +1,30 @@
 import argparse
 
 from yasc2reader import yasc2replay
+from yasc2reader.gameevents import CmdEvent
+from yasc2reader.data import abilities
 
 
 def main():
-    args = get_arg_parser().parse_args()
-    args.func(args)
+    executor = CommandExecutor()
+    executor.add_command(SummaryCommand(), 'summary', 'print one-line replay summary')
+    executor.add_command(ListCommandsCommand(), 'commands', 'print all commands')
+    executor.run()
 
 
-def get_arg_parser():
-    parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(help='command to run')
+class CommandExecutor:
+    def __init__(self):
+        self._parser = argparse.ArgumentParser()
+        self._subparsers = self._parser.add_subparsers(help='command to run')
 
-    summary = SummaryCommand()
-    summary_parser = subparsers.add_parser('summary', help='print replay summary')
-    summary.add_args(summary_parser)
-    summary_parser.set_defaults(func=summary.run)
+    def add_command(self, command, alias, help):
+        subparser = self._subparsers.add_parser(alias, help=help)
+        command.add_args(subparser)
+        subparser.set_defaults(func=command.run)
 
-    return parser
+    def run(self):
+        args = self._parser.parse_args()
+        args.func(args)
 
 
 class SummaryCommand:
@@ -42,6 +49,43 @@ class SummaryCommand:
         print msg
 
 
+class ListCommandsCommand:
+    def add_args(self, parser):
+        parser.add_argument('replay_file', help='.SC2Replay file to load')
+
+    def run(self, args):
+        replay = yasc2replay.load(args.replay_file)
+        abils = abilities.get_abilities(replay.version.build)
+        for event in replay.get_game_events():
+            if isinstance(event, CmdEvent):
+                cmd_str = self.get_cmd_str(event, abils)
+                if cmd_str:
+                    print cmd_str
+
+    def get_cmd_str(self, cmd, abils):
+        if cmd.ability_link is not None:
+            time = GameTime(cmd.gameloop).to_str()
+            ability_str = self.get_ability_str(cmd, abils)
+            if not ability_str:
+                ability_str = 'ability {},{}'.format(cmd.ability_link, cmd.ability_index)
+            return '{}: {}: {}'.format(time, cmd.player.race[0], ability_str)
+
+    def get_ability_str(self, cmd, abils):
+        if cmd.ability_link is None:
+            return None
+
+        abil = None
+        amSure = True
+        try:
+            abil = abils.single_or_none(cmd.ability_link, cmd.ability_index)
+        except:
+            amSure = False
+            abil = abils.first_or_none(cmd.ability_link, cmd.ability_index)
+        
+        if abil:
+            return abil.name + ('' if amSure else ' (probably)')
+
+
 class GameTime:
     def __init__(self, gameloops):
         self.gameloops = gameloops
@@ -62,6 +106,9 @@ class GameTime:
         seconds = (total_seconds % 60)
         return hours, minutes, seconds
 
+    def to_str(self, real_time=False):
+        h, m, s = self.real_hms() if real_time else self.game_hms()
+        return '{}:{:02d}:{:02d}'.format(h, m, s)
 
 if __name__ == '__main__':
     main()
