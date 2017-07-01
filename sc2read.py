@@ -75,15 +75,17 @@ class ListCommandsCommand:
             return None
 
         abil = None
-        amSure = True
+        am_sure = True
         try:
-            abil = abils.single_or_none(cmd.ability_link, cmd.ability_index)
+            abilities = abils.get_abilities(cmd.ability_link, cmd.ability_index)
+            abil = abilities[0]
+            if len(abilities) > 1:
+                am_sure = False
         except:
-            amSure = False
-            abil = abils.first_or_none(cmd.ability_link, cmd.ability_index)
+            pass
 
         if abil:
-            return abil.name + ('' if amSure else ' (probably)')
+            return abil.name + ('' if am_sure else ' (probably)')
 
 
 class GameTime:

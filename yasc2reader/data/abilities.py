@@ -1,6 +1,12 @@
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+
+def main():
+    abils = get_abilities(47484)
+    print 'yo'
+
+
 def get_abilities(build_version):
     path = get_abilities_file_path(build_version)
     if path is None:
@@ -33,30 +39,50 @@ class Abilities:
                 else:
                     link_bucket[a.index] += [a]
 
+    def get_abilities(self, link, index):
+        if link not in self.abilities:
+            raise IndexError("no link: " + str(link))
+        links = self.abilities[link]
+        if index not in links:
+            raise IndexError("link {} has no index {}".format(link, index))
+        return self.abilities[link][index]
+
     def single(self, link, index):
-        """ Get single ability with link and index. Exception thrown if len(matches) != 1 """
-        abilities = self.abilities[link][index]
+        """ Get single ability with link and index.
+        
+        Exceptions:
+            IndexError if link or index don't exist
+            Exception if number of abilities with same link & index != 1
+        """
+        abilities = self.get_abilities(link, index)
         if len(abilities) != 1:
             raise Exception('number of abilities(link: {}, index: {}) != 1'.format(link, index))
         return abilities[0]
 
     def single_or_none(self, link, index):
-        try:
-            return self.single(link, index)
-        except:
+        abilities = self.get_abilities(link, index)
+        if len(abilities) == 0:
             return None
+        if len(abilities) == 1:
+            return abilities[0]
+        raise Exception('number of abilities(link: {}, index: {}) > 1'.format(link, index))
 
     def first(self, link, index):
         return self.abilities[link][index][0]
 
     def first_or_none(self, link, index):
-        try:
-            return self.first(link, index)
-        except:
+        abilities = self.get_abilities(link, index)
+        if len(abilities) == 0:
             return None
+        return abilities[0]
+
 
 class Ability:
     def __init__(self, link, index, name):
         self.link = int(link)
         self.index = int(index) if index != 'None' else 0
         self.name = name.strip()
+
+
+if __name__ == '__main__':
+    main()
